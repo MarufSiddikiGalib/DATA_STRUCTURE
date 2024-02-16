@@ -1,0 +1,575 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+
+struct Node_single
+{
+  int item;
+  struct Node_single* next;
+};
+struct Node_single* head = NULL;
+
+
+class SingleLinkedList{
+    public:
+void insertAtFirst(int data)
+{
+  struct Node_single* new_node = new Node_single();
+
+  new_node->item = data;
+  new_node->next = head;
+  head = new_node;
+}
+
+void insertAtLast(int data)
+{
+  struct Node_single* new_node = new Node_single();
+  struct Node_single* last = head;
+
+  new_node->item = data;
+  new_node->next = NULL;
+
+  if (head == NULL)
+  {
+    head = new_node;
+  }
+
+  else
+  {
+      while (last->next != NULL)
+      {
+        last = last->next;
+
+      }
+
+      last->next = new_node;
+  }
+}
+
+void insertAtAnyPos(struct Node_single* prev_node, int data)
+{
+  if (prev_node == NULL)
+  {
+    cout << "The given previous node cannot be NULL"<<endl;
+  }
+
+  else
+  {
+    struct Node_single* new_node = new Node_single();
+
+    new_node->item = data;
+    new_node->next = prev_node->next;
+    prev_node->next = new_node;
+  }
+}
+
+
+void insertBeforeElement(struct Node_single* prev_node, int data)
+{
+  if (prev_node == NULL)
+  {
+    cout << "The given previous node cannot be NULL"<<endl;
+  }
+
+  else
+  {
+    struct Node_single* new_node = new Node_single();
+
+    new_node->item = data;
+    new_node->next = prev_node->next;
+    prev_node->next = new_node;
+  }
+}
+
+
+
+void deleteElementByValue(int key)
+{
+  struct Node_single *temp = head, *prev;
+
+  if (temp != NULL && temp->item == key)
+  {
+    head = temp->next;
+
+    return;
+  }
+
+  while (temp != NULL && temp->item != key)
+  {
+    prev = temp;
+    temp = temp->next;
+  }
+
+  if (temp == NULL)
+  {
+      return;
+  }
+
+  prev->next = temp->next;
+
+}
+
+void deleteAtPos(int key)
+{
+  struct Node_single *temp = head, *prev;
+
+  if (temp != NULL && temp->item == key)
+  {
+    head = temp->next;
+
+    return;
+  }
+
+  while (temp != NULL && temp->item != key)
+  {
+    prev = temp;
+    temp = temp->next;
+  }
+
+  if (temp == NULL)
+  {
+      return;
+  }
+
+  prev->next = temp->next;
+
+}
+
+int searchlist(int item1)
+{
+    struct Node_single* new_node = new Node_single();
+    int data=10;
+
+    new_node->item = data;
+    if(item1 == data )
+    {
+        cout<<"Found."<<endl;
+    }
+    else
+    {
+        cout<<"Not found."<<endl;
+    }
+}
+void displayList(struct Node_single* nodea)
+{
+  while (nodea != NULL)
+  {
+    cout << nodea->item << " ";
+    nodea = nodea->next;
+  }
+  cout << endl << endl;
+}
+};
+
+struct Node {
+  int data;
+  struct Node* next;
+  struct Node* prev;
+};
+
+class DoubleLinkedList{
+    public:
+void insertAtFirst(struct Node** head, int data) {
+
+  struct Node* newNode = new Node;
+
+  newNode->data = data;
+
+
+  newNode->next = (*head);
+
+  newNode->prev = NULL;
+
+  if ((*head) != NULL)
+    (*head)->prev = newNode;
+
+
+  (*head) = newNode;
+}
+
+
+void insertAtAnyPos(struct Node* prev_node, int data) {
+
+  if (prev_node == NULL) {
+    cout << "previous node cannot be null";
+    return;
+  }
+
+  struct Node* newNode = new Node;
+
+
+  newNode->data = data;
+
+
+  newNode->next = prev_node->next;
+
+  prev_node->next = newNode;
+
+
+  newNode->prev = prev_node;
+
+
+  if (newNode->next != NULL)
+    newNode->next->prev = newNode;
+}
+
+
+void insertAtLast(struct Node** head, int data) {
+
+  struct Node* newNode = new Node;
+
+
+  newNode->data = data;
+
+
+  newNode->next = NULL;
+
+
+  struct Node* temp = *head;
+
+
+  if (*head == NULL) {
+    newNode->prev = NULL;
+    *head = newNode;
+    return;
+  }
+
+  while (temp->next != NULL)
+    temp = temp->next;
+
+
+  temp->next = newNode;
+
+  newNode->prev = temp;
+}
+
+void deletePos(struct Node** head, struct Node* del_node) {
+
+  if (*head == NULL || del_node == NULL)
+    return;
+
+
+  if (*head == del_node)
+    *head = del_node->next;
+
+
+  if (del_node->next != NULL)
+    del_node->next->prev = del_node->prev;
+
+
+  if (del_node->prev != NULL)
+    del_node->prev->next = del_node->next;
+
+  free(del_node);
+}
+
+void deleteElement(struct Node** head, struct Node* del_node) {
+
+  if (*head == NULL || del_node == NULL)
+    return;
+
+
+  if (*head == del_node)
+    *head = del_node->next;
+
+
+  if (del_node->next != NULL)
+    del_node->next->prev = del_node->prev;
+
+
+  if (del_node->prev != NULL)
+    del_node->prev->next = del_node->next;
+
+  free(del_node);
+}
+
+void displayList(struct Node* node) {
+  struct Node* last;
+
+  while (node != NULL) {
+    cout << node->data << "->";
+    last = node;
+    node = node->next;
+  }
+  if (node == NULL)
+    cout << "NULL\n";
+}
+};
+
+
+class Node_stack {
+public:
+	int data;
+	Node_stack* link;
+	Node_stack(int n)
+	{
+		this->data = n;
+		this->link = NULL;
+	}
+};
+
+class Stack {
+	Node_stack* top;
+
+public:
+	Stack() { top = NULL; }
+
+	void push(int data)
+	{
+		Node_stack* temp = new Node_stack(data);
+		if (!temp) {
+			cout << "Stack Overflow"<<endl;
+			exit(1);
+		}
+		temp->data = data;
+		temp->link = top;
+		top = temp;
+	}
+	bool isEmpty()
+	{
+		return top == NULL;
+	}
+
+	int TopValue()
+	{
+		if (!isEmpty())
+			return top->data;
+		else
+			exit(1);
+	}
+	void pop()
+	{
+		Node_stack* temp;
+		if (top == NULL) {
+			cout << "Stack Underflow" << endl;
+			exit(1);
+		}
+		else {
+			temp = top;
+
+			top = top->link;
+			free(temp);
+		}
+	}
+	void display()
+	{
+		Node_stack* temp;
+		if (top == NULL) {
+			cout << "Stack Underflow";
+			exit(1);
+		}
+		else {
+			temp = top;
+			while (temp != NULL) {
+				cout << temp->data;
+				temp = temp->link;
+				if (temp != NULL)
+					cout << " ";
+}
+}
+}
+};
+
+#define MAX_SIZE 5
+class Queue
+{
+private:
+    int myqueue[MAX_SIZE], front, rear;
+
+public:
+    Queue()
+    {
+        front = -1;
+        rear = -1;
+    }
+
+    bool isFull()
+    {
+        if(front == 0 && rear == MAX_SIZE - 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool isEmpty()
+    {
+        if(front == -1) return true;
+        else return false;
+    }
+
+    void enQueue(int value)
+    {
+        if(isFull())
+        {
+            cout << endl<< "Queue is full!!";
+        }
+        else
+        {
+            if(front == -1) front = 0;
+            rear++;
+            myqueue[rear] = value;
+            cout << value << " ";
+        }
+    }
+    int deQueue()
+    {
+        int value;
+        if(isEmpty())
+        {
+            cout << "Queue is empty!!" << endl;
+            return(-1);
+        }
+        else
+        {
+            value = myqueue[front];
+            if(front >= rear)
+            {
+                front = -1;
+                rear = -1;
+            }
+            else
+            {
+                front++;
+            }
+            cout << endl << "Deleted => " << value << " from myqueue";
+            return(value);
+        }
+    }
+    void displayQueue()
+    {
+        int i;
+        if(isEmpty())
+        {
+            cout << endl << "Queue is Empty!!" << endl;
+        }
+        else
+        {
+            cout << endl << "Front = " << front;
+            cout << endl << "Queue elements : ";
+            for(i=front; i<=rear; i++)
+                cout << myqueue[i] << "\t";
+            cout << endl << "Rear = " << rear << endl;
+        }
+    }
+};
+
+
+struct node2
+    {
+        int value;
+        node2 *left;
+        node2 *right;
+    };
+struct node2 *root = NULL;
+
+class bst{
+    public:
+
+
+
+    void insertIntoBST(int key, node2 *leaf)
+    {
+        if(root == NULL)
+        {
+            root = new node2;
+            root->value = key;
+            root->left = NULL;
+            root->right = NULL;
+        }
+
+        else
+        {
+            if(key < leaf->value)
+            {
+                if(leaf->left != NULL)
+                {
+                    insertIntoBST(key, leaf->left);
+                }
+
+                else
+                {
+                    leaf->left = new node2;
+                    leaf->left->value = key;
+                    leaf->left->left = NULL;
+                    leaf->left->right = NULL;
+                }
+            }
+
+            else if(key > leaf->value)
+            {
+                if(leaf->right != NULL)
+                {
+                    insertIntoBST(key, leaf->right);
+                }
+
+                else
+                {
+                    leaf->right = new node2;
+                    leaf->right->value = key;
+                    leaf->right->right = NULL;
+                    leaf->right->left = NULL;
+                }
+            }
+        }
+    }
+
+    struct node2 *searchInBST(int key, node2 *leaf)
+    {
+        if(leaf != NULL)
+        {
+            if(key == leaf->value)
+            {
+                cout << "Found." << endl;
+                return leaf;
+            }
+
+            else if(key < leaf->value)
+            {
+                return searchInBST(key, leaf->left);
+            }
+
+            else
+            {
+                return searchInBST(key, leaf->right);
+            }
+        }
+
+        else
+        {
+            cout << "Not Found." << endl;
+            return NULL;
+        }
+    }
+
+    void displayInorder(node2 *leaf)
+    {
+        if(leaf != NULL)
+        {
+            displayInorder(leaf->left);
+            cout << leaf->value << ", ";
+            displayInorder(leaf->right);
+        }
+    }
+
+    void displayPreorder(node2 *leaf)
+    {
+        if(leaf != NULL)
+        {
+            displayPreorder(leaf->left);
+            displayPreorder(leaf->right);
+            cout << leaf->value << ", ";
+        }
+    }
+
+    void displayPostorder(node2 *leaf)
+    {
+        if(leaf != NULL)
+        {
+            cout << leaf->value << ", ";
+            displayPostorder(leaf->left);
+            displayPostorder(leaf->right);
+        }
+    }
+};

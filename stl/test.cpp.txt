@@ -1,0 +1,122 @@
+#include<bits/stdc++.h>
+#include "mySTL.h"
+
+using namespace std;
+int main()
+{
+
+
+      SingleLinkedList sll;
+      cout<<"Insertion 25 at first : ";
+      sll.insertAtFirst(25);
+      sll.displayList(head);
+      sll.insertAtLast(1);
+      sll.insertAtLast(2);
+      sll.insertAtLast(3);
+      sll.insertAtLast(4);
+      sll.insertAtLast(5);
+      cout << "Linked list After inserting from the End: ";
+      sll.displayList(head);
+      sll.insertAtFirst(20);
+      sll.insertAtAnyPos(head->next->next->next->next, 50);
+      cout << "Linked list after inserting:\n20 at Beginning and 50 after 3: "<<endl;
+      sll.displayList(head);
+      sll.insertBeforeElement(head->next->next->next->next, 60);
+      cout << "Linked list after inserting: 60 before 50: "<<endl;
+      sll.displayList(head);
+      cout << "Searching the item 20 : "<<endl;
+      sll.searchlist(20);
+      cout << "Searching the item 9 : "<<endl;
+      sll.searchlist(9);
+      cout<<endl;
+      cout << "After deleting 20, 3 : "<<endl;
+      sll.deleteElementByValue(20);
+      sll.deleteElementByValue(3);
+      sll.displayList(head);
+      cout << "After deleting last node: "<<endl;
+      sll.deleteAtPos(5);
+      sll.displayList(head);
+
+
+
+    struct Node* head = NULL;
+    DoubleLinkedList dll;
+    dll.insertAtFirst(&head, 1);
+    dll.insertAtFirst(&head, 6);
+    cout<<"DoubleLinkedList after inserting 1 and 6 at first : "<<endl;
+    dll.displayList(head);
+    cout<<"DoubleLinkedList after inserting 5 and 9 at last : "<<endl;
+    dll.insertAtLast(&head, 5);
+    dll.insertAtLast(&head, 9);
+    dll.displayList(head);    cout<<"DoubleLinkedList after inserting 11 after 6: "<<endl;
+    dll.insertAtAnyPos(head, 11);
+    dll.displayList(head);
+    cout<<"DoubleLinkedList after inserting 15 at 3: "<<endl;
+    dll.insertAtAnyPos(head->next, 15);
+    dll.displayList(head);
+    cout<<"DoubleLinkedList after deleting 5: "<<endl;
+    dll.deleteElement(&head, head->next->next->next->next);
+    dll.displayList(head);
+    cout<<"DoubleLinkedList after deleting last node: "<<endl;
+    dll.deletePos(&head, head->next->next->next->next);
+    dll.displayList(head);
+
+
+
+    Stack s;
+    cout<<"Stack elements : ";
+	s.push(5);
+	s.push(2);
+	s.push(3);
+	s.push(4);
+	s.push(0);
+	s.display();
+	cout << "Top element is " << s.TopValue() << endl;
+    cout<<endl;
+	cout<<"Stack elements after Popping 2 values : ";
+	s.pop();
+	s.pop();
+	s.display();
+    cout<<endl;
+	cout << "Top element is " << s.TopValue() << endl;
+
+
+
+    Queue myq;
+    myq.deQueue();
+    cout<<"Queue created:"<<endl;
+    myq.enQueue(10);
+    myq.enQueue(20);
+    myq.enQueue(30);
+    myq.enQueue(40);
+    myq.enQueue(50);
+    myq.enQueue(60);
+    myq.displayQueue();
+    myq.deQueue();
+    myq.displayQueue();
+
+
+
+    bst bb;
+    bb.insertIntoBST(50, root);
+	bb.insertIntoBST(30, root);
+	bb.insertIntoBST(20, root);
+	bb.insertIntoBST(40, root);
+	bb.insertIntoBST(70, root);
+	bb.insertIntoBST(60, root);
+	bb.insertIntoBST(80, root);
+	cout << "In-order Traversing of the Tree: ";
+    bb.displayInorder(root);
+    cout << endl << endl;
+	cout << "Pre-order Traversing of the Tree: " ;
+	bb.displayPreorder(root);
+	cout << endl << endl;
+	cout << "Post-order Traversing of the Tree: " ;
+	bb.displayPostorder(root);
+	cout << endl << endl;
+	cout << "Search the item 10 in the tree : ";
+    bb.searchInBST(10, root);
+	cout << "Search the item 50 in the tree : ";
+	bb.searchInBST(50, root);
+    return 0;
+}
